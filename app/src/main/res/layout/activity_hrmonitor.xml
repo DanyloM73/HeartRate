@@ -36,7 +36,7 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:fontFamily="@font/rubik_semibold"
-        android:text="Палець не виявлено"
+        android:text="@string/main_text_default"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/rubik_regular"
-        android:text="Щільно прикладіть палець до камери"
+        android:text="@string/sub_text_default"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/rubik_bold"
-            android:text="--"
+            android:text="@string/bpm_value_default"
             android:textColor="@color/white"
             android:textSize="62sp" />
 
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/rubik_regular"
-            android:text="bpm"
+            android:text="@string/bpm"
             android:textColor="@color/white"
             android:textSize="22sp" />
 
@@ -96,6 +96,7 @@
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
+        android:contentDescription="@string/hint_image_description"
         android:src="@drawable/hint"
         android:visibility="visible"
         android:layout_marginTop="56dp"
@@ -122,7 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/rubik_regular"
-            android:text="0%"
+            android:text="@string/progress_default"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:elevation="10dp"/>
@@ -138,6 +139,7 @@
             android:progressDrawable="@drawable/progress_bar"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="595dp" />
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

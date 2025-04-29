@@ -1,8 +1,10 @@
-package com.example.heartrate;
+package com.example.heartrate.utils
 
 class ImageProcessing {
     companion object {
-        private fun decodeYUV420SPtoRedSum(yuv420sp: ByteArray, width: Int, height: Int): Int {
+        private fun decodeYUV420SPtoRedSum(
+            yuv420sp: ByteArray, width: Int, height: Int
+        ): Int {
             val frameSize = width * height
             var sum = 0
             var uvp = frameSize
@@ -33,7 +35,6 @@ class ImageProcessing {
             return sum
         }
 
-        // Decode YUV to Red Avg
         fun decodeYUV420SPtoRedAvg(yuv420sp: ByteArray, width: Int, height: Int): Int {
             val frameSize = width * height
             val sum = decodeYUV420SPtoRedSum(yuv420sp, width, height)

@@ -1,82 +1,88 @@
 package com.example.heartrate
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.widget.Button
-import android.widget.SeekBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
-
+import androidx.core.graphics.toColorInt
+import androidx.lifecycle.lifecycleScope
+import com.example.heartrate.data.AppDatabase
+import com.example.heartrate.data.MeasurementEntity
+import com.example.heartrate.databinding.ActivityResultBinding
+import kotlinx.coroutines.launch
 
 class ResultActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityResultBinding
+    private lateinit var database: AppDatabase
 
-    @SuppressLint("MissingInflatedId", "ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val progressBar = findViewById<SeekBar>(R.id.progress_bar)
-        val resultTextView = findViewById<TextView>(R.id.level_text)
-        val timeTextView = findViewById<TextView>(R.id.time_text)
-        val dateTextView = findViewById<TextView>(R.id.date_text)
-        val homeButton = findViewById<Button>(R.id.home_btn)
+        database = AppDatabase.getInstance(this)
 
-        val slowedDiapasonText = findViewById<TextView>(R.id.slowed_diapason_text)
-        val normalDiapasonText = findViewById<TextView>(R.id.normal_diapason_text)
-        val speedDiapasonText = findViewById<TextView>(R.id.speed_diapason_text)
+        val number = intent.getIntExtra("bpm", 0)
 
-        val number = intent.getStringExtra("bpm")?.toInt()
+        binding.progressBar.progress = number
+        binding.progressBar.setOnTouchListener { _, _ -> true }
 
-        if (number != null) {
-            progressBar.progress = number
-
-            progressBar.setOnTouchListener { _, _ -> true }
+        binding.levelText.text = when {
+            number < 60 -> getString(R.string.slowed_level)
+            number in 60..100 -> getString(R.string.normal_level)
+            else -> getString(R.string.speed_level)
         }
 
-        if (number != null) {
-            resultTextView.text = when {
-                number < 60 -> "Уповільнений"
-                number in 60..100 -> "Звичайно"
-                else -> "Прискорений"
+        binding.levelText.setTextColor(when {
+            number < 60 -> {
+                "#21D7E2".toColorInt()
             }
+            number in 60..100 -> {
+                "#1FF19B".toColorInt()
+            }
+            else -> {
+                "#FF4C4C".toColorInt()
+            }
+        })
 
-            resultTextView.setTextColor(when {
-                number < 60 -> {
-                    Color.parseColor("#21D7E2")
-                }
-                number in 60..100 -> {
-                    Color.parseColor("#1FF19B")
-                }
-                else -> {
-                    Color.parseColor("#FF4C4C")
-                }
-            })
-
-            when {
-                number < 60 -> {
-                    slowedDiapasonText.setTextColor(Color.parseColor("#000000"))
-                }
-                number in 60..100 -> {
-                    normalDiapasonText.setTextColor(Color.parseColor("#000000"))
-                }
-                number > 100 -> {
-                    speedDiapasonText.setTextColor(Color.parseColor("#000000"))
-                }
+        when {
+            number < 60 -> {
+                binding.slowedDiapasonText.setTextColor("#000000".toColorInt())
+            }
+            number in 60..100 -> {
+                binding.normalDiapasonText.setTextColor("#000000".toColorInt())
+            }
+            else -> {
+                binding.speedDiapasonText.setTextColor("#000000".toColorInt())
             }
         }
 
-        val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
-        val currentDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
-        timeTextView.text = currentTime
-        dateTextView.text = currentDate
+        val currentTime = SimpleDateFormat(
+            "HH:mm", Locale.getDefault()
+        ).format(Date())
+        val currentDate = SimpleDateFormat(
+            "dd/MM/yyyy", Locale.getDefault()
+        ).format(Date())
+        binding.timeText.text = currentTime
+        binding.dateText.text = currentDate
 
-        homeButton.setOnClickListener{
-            val intent = Intent(this@ResultActivity, MainActivity::class.java)
-            startActivity(intent)
+        lifecycleScope.launch {
+            database.measurementDao().insertMeasurement(
+                MeasurementEntity(
+                    bpm = number,
+                    time = currentTime,
+                    date = currentDate
+                )
+            )
+        }
+
+        binding.homeBtn.setOnClickListener{
+            startActivity(Intent(this@ResultActivity, MainActivity::class.java))
+        }
+
+        binding.historyBtn.setOnClickListener {
+            startActivity(Intent(this@ResultActivity, HistoryActivity::class.java))
         }
     }
 }

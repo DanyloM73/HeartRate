@@ -1,13 +1,9 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/background">
-        <shape>
-            <corners android:radius="8dp" />
-            <size android:width="311dp" android:height="12dp"/>
-            <gradient
-                android:startColor="#21D7E2"
-                android:centerColor="#1FF19B"
-                android:endColor="#FF4C4C"
-                android:angle="0"/>
-        </shape>
+        <bitmap
+            android:src="@drawable/result_progress_bg"
+            android:tileMode="clamp"
+            android:gravity="fill" />
     </item>
 </layer-list>
+

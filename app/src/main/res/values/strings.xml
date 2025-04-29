@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">HeartRate</string>
+    <string name="history">Історія</string>
+    <string name="main_title">Виконайте своє перше вимірювання!</string>
+    <string name="heart_image_description">Heart image</string>
+    <string name="start_button_description">Start button</string>
+
+    <string name="slowed_level">Уповільнений</string>
+    <string name="normal_level">Звичайно</string>
+    <string name="speed_level">Прискорений</string>
+    <string name="main_text_default">Палець не виявлено</string>
+    <string name="sub_text_default">Щільно прикладіть палець до камери</string>
+    <string name="bpm_value_default">--</string>
+    <string name="bpm">bpm</string>
+    <string name="hint_image_description">Hint image</string>
+    <string name="progress_default">0%</string>
+    <string name="main_text_active">Йде вимірювання</string>
+    <string name="sub_text_active">Визначаємо ваш пульс. Утримуйте!</string>
+    <string name="progress">%d%%</string>
+
+    <string name="your_result">Ваш Результат</string>
+    <string name="time_icon_description">Time icon</string>
+    <string name="less_60_bpm"><![CDATA[<60 BPM]]></string>
+    <string name="_60_100_bpm">60-100 BPM</string>
+    <string name="greater_100_bpm"><![CDATA[>100 BPM]]></string>
+    <string name="done">Готово</string>
+    <string name="result_toolbar_text">Результат</string>
+    <string name="clear_history">Очистити історію</string>
+    <string name="back_btn_description">Back</string>
+
+    <string name="bpm_value">%d BPM</string>
+    <string name="application_name">Heart Rate</string>
 </resources>
