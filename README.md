@@ -1,15 +1,39 @@
 # HeartRate
 
-💗 Simple Android application for measuring pulse with smartphone camera
+### Android application for measuring pulse with phone camera
 
-## ❔ What can it do?
+## Used technologies and tools
 
-This application allows you to measure your current pulse by placing your finger on the camera of your smartphone. 
-All you need to do is press the start button on the home screen and place your finger on the camera of your smartphone. 
-Then your current pulse will be measured and the residual result will be displayed on the screen.
+- Kotlin
+- Android SDK
+- Android XML
+- Room database
+- RecyclerView
+- View binding
+- CameraX
 
-## 🛠️ What is planned to be added/changed?
+## Illustrations
 
-- History of pulse measurements
-- More animations
-- Appearance of some application elements
+### Loading screen
+
+<img src="images/1.png" alt="Start screen" width=301>
+
+### Home screen
+
+<img src="images/2.png" alt="Start screen" width=301>
+
+### Heart rate measurement (finger is not detected)
+
+<img src="images/3.png" alt="Start screen" width=301>
+
+### Heart rate measurement
+
+<img src="images/4.png" alt="Start screen" width=301>
+
+### Measurement result screen
+
+<img src="images/5.png" alt="Start screen" width=301>
+
+### History of measurements screen
+
+<img src="images/6.png" alt="Start screen" width=301>
